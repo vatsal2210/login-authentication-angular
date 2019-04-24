@@ -1,3 +1,4 @@
+
 var express = require('express'),							// Allows to set up middlewares to respond to HTTP Requests.  Allows to dynamically render HTML Pages based on passing arguments to templates.
 	app = express(),
 	path = require('path'),
@@ -23,9 +24,12 @@ var express = require('express'),							// Allows to set up middlewares to respo
 	users = require('./routes/users');
 
 //MongoDB Connection
-var configDB = require('./config/database.js');
-mongoose.connect(configDB.url);
+require('dotenv').config()
+var mongoDB = process.env.MONGODB_URI || dev_url;
+mongoose.connect(mongoDB);
 console.log('mongodb connected.');
+var db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connection error:"))
 
 app.set('views', path.join(__dirname, 'views'));			// View Engine
 app.engine('handlebars', exphbs({defaultLayout:'main'}));	
