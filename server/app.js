@@ -1,4 +1,6 @@
-
+require('./models/db');
+require ('./config/passport');
+var logger = require('morgan');
 var express = require('express'),							// Allows to set up middlewares to respond to HTTP Requests.  Allows to dynamically render HTML Pages based on passing arguments to templates.
 	app = express(),
 	path = require('path'),
@@ -8,11 +10,12 @@ var express = require('express'),							// Allows to set up middlewares to respo
 	expressValidator = require('express-validator'),		// express-validation is a middleware that validates the body, params, query, headers and cookies of a request and returns a response with errors; if any of the configured validation rules fail.
 	flash = require('connect-flash'),						// The flash is a special area of the session used for storing messages. Messages are written to the flash and cleared after being displayed to the user. 
 	session = require('express-session'),					// To set app.use(session)
-	
+     
 	passport = require('passport'),							// Passport is authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based web application.
 	LocalStrategy = require('passport-local').Strategy,		// Before asking Passport to authenticate a request, the strategy (or strategies) used by an application must be configured. Strategies, and their configuration, are supplied via the use() function.
 	
-	mongoose = require('mongoose'),							// Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment.
+	mongoose = require('mongoose');	
+						// Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment.
 	
 	server = require('http').createServer(app),				// Create server as app and listen app with socket.io
 	io = require('socket.io').listen(server),
@@ -21,7 +24,7 @@ var express = require('express'),							// Allows to set up middlewares to respo
 	timestamp = require('console-timestamp'),				// To set schedule and timer
 	
 	routes = require('./routes/index'),						// Routing 
-	users = require('./routes/users');
+	users = require('./routes/users1');
 
 //MongoDB Connection
 require('dotenv').config()
@@ -33,8 +36,8 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"))
 
 app.set('views', path.join(__dirname, 'views'));			// View Engine
 app.engine('handlebars', exphbs({defaultLayout:'main'}));	
-app.set('view engine', 'handlebars');
-
+app.set('view engine', 'jade');
+app.use(logger('dev'));
 app.use(bodyParser.json());									// Returns middleware that only parses json. This parser accepts any Unicode encoding of the body and supports automatic inflation of gzip and deflate encodings.
 app.use(bodyParser.urlencoded({ extended: false }));		// Returns middleware that only parses urlencoded bodies. This parser accepts only UTF-8 encoding of the body and supports automatic inflation of gzip and deflate encodings. extended - parse extended syntax with the qs module. (default: true)
 app.use(cookieParser());									// Parse Cookie header and populate req.cookies with an object keyed by the cookie names. 
@@ -71,11 +74,11 @@ app.use(function (req, res, next) {							// Global Vars
 	next();
 });
 
-app.use('/', routes);
-app.use('/users', users);
+app.use('/api', routes);
+//app.use('/users', users);
 
-server.listen(80, function(){								// Set Port
-	console.log('\nDD-MM-YY : hh:mm:ss'.timestamp, ': Start listening on Port *.80');
+server.listen(3000, function(){								// Set Port
+	console.log('\nDD-MM-YY : hh:mm:ss'.timestamp, ': Start listening on Port *3000');
 }); 
 
 io.on('connection', function (socket) {						// io.on Connection Part

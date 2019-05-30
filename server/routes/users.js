@@ -263,13 +263,13 @@ router.post('/register', function(req, res){					// Post method from register.ha
 			newUser.local.file = file;
 			newUser.local.date = date;
 	
-		User.createUser(newUser, function(err, user){			// Create User 
-			if(err) throw err;
+		
+		newUser.save(function(err) {
+      if (err) {
+        return res.json({success: false, msg: 'Username already exists.'});
+      }
+			res.json({success: true, msg: 'Successful created new user.'});
 		});
-
-		req.flash('success_msg', name + ', you are registered and can now login.');
-			console.log(name + ' is registered.');
-			//require('./mailer.js').sendEmail(newUser);
 		res.redirect('/users/login');
 		}
 });

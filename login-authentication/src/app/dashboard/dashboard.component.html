@@ -1,5 +1,13 @@
 <h2 class="page-header">Dashboard</h2>
 <p>Welcome to your dashboard</p>
+<h3>  Login Details </h3>
+<!-----<a *ngFor = "let users of user">
+	<strong>id</strong>: {{ user.facebook.id }}<br>
+	<strong>token</strong>: {{ user.facebook.token }}<br>
+	<strong>email</strong>: {{ user.facebook.email }}<br>
+	<strong>name</strong>: {{ user.facebook.name }}
+</a> ---->
+
 <!--There is a line here .
 <h3> Local Login :  {{ user.local.username }} </h3>
 <p>
@@ -50,3 +58,25 @@
 	<strong>name</strong>: {{ user.github.name }}
 </p>
 ---->
+<div class="container">
+	<div class="row">
+	  
+	   <div class="col-md-6">
+  
+		<h1 class="form-signin-heading">Your profile</h1>
+  
+		<div class="form-horizontal">
+		  <div class="form-group">
+			<label class="col-sm-3 control-label">Full name</label>
+			<p class="form-control-static">{{ details?.name }}</p>
+		  </div>
+		  <div class="form-group">
+			<label class="col-sm-3 control-label">Email</label>
+			<p class="form-control-static">{{ details?.email }}</p>
+		  </div>
+		</div>
+  
+	  </div>
+  
+	</div>
+  </div>

@@ -1,17 +1,16 @@
 var express = require('express');
 var router = express.Router();
-
-router.get('/', ensureAuthenticated, function(req, res){	// Get Homepage
-	res.render('index');
+var jwt = require('express-jwt');
+var auth = jwt({
+  secret: 'MY_SECRET',
+  userProperty: 'payload'
 });
+var ctrlProfile = require('../controllers/profile');
+var ctrlAuth = require('../controllers/authentication');
 
-function ensureAuthenticated(req, res, next){
-	if(req.isAuthenticated()){
-		return next();
-	} else {
-		req.flash('error_msg','You are not logged in');
-		res.redirect('/users/login'); 			//Change here to redirect any page directly. 
-	}
-}
+router.get('/profile', auth, ctrlProfile.profileRead);
 
+// authentication
+router.post('/register', ctrlAuth.register);
+router.post('/login', ctrlAuth.login);
 module.exports = router;

@@ -1,20 +1,39 @@
-<div> 
-	<a><button (click) = "facebookLogin()" routerLink = "/dashboard" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</button></a>
-		<a href="/users/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter</a>
-		<a href="/users/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
-		<a href="/users/auth/github" class="btn btn-danger"><span class="fa fa-github"></span> GitHub</a>
-		<a href="/users/auth/linkedin" class="btn btn-primary"><span class="fa fa-linkedin"></span> LinkedIn</a>
-</div>
-	<!-- CSS -->
-	<link rel="stylesheet" href="/app.component.css" />
-	<!-- JS -->
+<div class="container">
 
-<div class = "footer">
-	 
-	<a href="www.vatsalshah.in"><p>&copy; 2019 Emmanuel Maduwuba </p></a>
+	<div class="row">
+	  
+	  <div class="col-md-6">
+  
+		<h1 class="form-signin-heading">Sign in</h1>
+		<p class="lead">Not a member? Please <a routerLink="/register">register</a> instead.</p>
 	
-
-</div>
-
- 
-
+		<form (submit)="login()">
+		  <div class="form-group">
+			<label for="email">Email address</label>
+			<input type="email" class="form-control" name="email" placeholder="Enter email" [(ngModel)]="credentials.email">
+		  </div>
+		  <div class="form-group">
+			<label for="password">Password</label>
+			<input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="credentials.password">
+		  </div>
+		  <button type="submit" class="btn btn-default">Sign in!</button>
+		</form>
+		<div> 
+			<a><button (click) = "facebookLogin()" routerLink = "/dashboard" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</button></a>
+				<a href="/users/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter</a>
+				<a href="/users/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
+				<a href="/users/auth/github" class="btn btn-danger"><span class="fa fa-github"></span> GitHub</a>
+				<a href="/users/auth/linkedin" class="btn btn-primary"><span class="fa fa-linkedin"></span> LinkedIn</a>
+		</div>
+			<!-- CSS -->
+			<link rel="stylesheet" href="/app.component.css" />
+			<!-- JS -->
+		
+		<div class = "footer">
+			 
+			<a href="http://emmanuelmaduwuba.com"><p>&copy; 2019 Emmanuel Maduwuba </p></a>
+	  </div>
+	</div>
+  
+  </div>
+  

@@ -1,50 +1,74 @@
 export class User {
-   local :{
-    username: String;
-    password: String;
-    email: String;
-    name: String;
-    contactno: Number;
-    date: Date;
-   }
-facebook: {
-    username: String;
-    password: String;
-    email: String;
-    name: String;
-    contactno: Number;
-    date: Date;
+      username: string;
+      password: string;
+      email: string;
+      name: string;
+      contactno: number;
+      date: Date;
+   /*local: {
+      username: string;
+      password: string;
+      email: string;
+      name: string;
+      contactno: number;
+      date: Date;
+   };
+   facebook: {
+      username: string;
+      password: string;
+      email: string;
+      name: string;
+      contactno: number;
+      date: Date;
+   };
+   twitter: {
+      username: string;
+      password: string;
+      email: string;
+      name: string;
+      contactno: number;
+      date: Date;
+   };
+   github: {
+      username: string;
+      password: string;
+      email: string;
+      name: string;
+      contactno: number;
+      date: Date;
+   };
+   linkedin: {
+      username: string;
+      password: string;
+      email: string;
+      name: string;
+      contactno: number;
+      date: Date;
+   };
+   google: {
+      username: string;
+      password: string;
+      email: string;
+      name: string;
+      contactno: number;
+      date: Date;
+   };
+
+   */
 }
- twitter: {
-    username: String;
-    password: String;
-    email: String;
-    name: String;
-    contactno: Number;
-    date: Date;
+export interface UserDetails {
+   _id: string;
+   email: string;
+   name: string;
+   exp: number;
+   iat: number;
  }
-github : {
-    username: String;
-    password: String;
-    email: String;
-    name: String;
-    contactno: Number;
-    date: Date;
-}
- linkedin : { 
-    username: String;
-    password: String;
-    email: String;
-    name: String;
-    contactno: Number;
-    date: Date;
+interface TokenResponse {
+   token: string;
  }
- google : {
-    username: String;
-    password: String;
-    email: String;
-    name: String;
-    contactno: Number;
-    date: Date;
-  }
-}
+
+export interface TokenPayload {
+   email: string;
+   password: string;
+   name?: string;
+ }

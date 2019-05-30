@@ -1,22 +1,16 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
+<div class="navbar navbar-default">
+  <div class="container">
+    <div id="navbar-main">
+      <ul class="nav navbar-nav">
+        <li><a routerLink="/">Home</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="!auth.isLoggedIn()"><a routerLink="/login">Sign in</a></li>
+        <li *ngIf="auth.isLoggedIn()"><a routerLink="/profile">{{ auth.getUserDetails()?.name }}</a></li>
+        <li *ngIf="auth.isLoggedIn()"><a (click)="auth.logout()">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-  <h2 class="page-header">Account Login</h2>
-			<h3 class="text-muted">Welcome to Automation</h3>
-  <form method="post" action="/users/login">
-    <div class="form-group">
-      <label>Username</label>
-      <input type="text" class="form-control" name="username" placeholder="Username" require="" value="Emmanuel">
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" class="form-control" name="password" placeholder="Password" require="" value="123">
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
-  <br/>
-<app-loginpage> </app-loginpage>
 <router-outlet></router-outlet>

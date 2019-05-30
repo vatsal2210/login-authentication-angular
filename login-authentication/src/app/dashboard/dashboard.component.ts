@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from  '../models/user.model'
+import {User} from '../models/user.model';
+import { AuthenticationService, UserDetails } from '../services/auth-api.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -7,10 +9,14 @@ import {User} from  '../models/user.model'
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-user : User[] = []
-  constructor() { }
+details: UserDetails;
+  constructor(private auth: AuthenticationService) { }
 
   ngOnInit() {
+    this.auth.profile().subscribe(user => {
+      this.details = user;
+    }, (err) => {
+      console.error(err);
+    });
   }
-
 }
